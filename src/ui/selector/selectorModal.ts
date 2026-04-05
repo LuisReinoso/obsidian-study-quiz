@@ -123,9 +123,7 @@ export default class SelectorModal extends Modal {
 					} else if (isSelectAllThatApply(question)) {
 						questions.push(question);
 					} else if (isFillInTheBlank(question)) {
-						const normalizeBlanks = (str: string): string => {
-							return this.settings.provider !== Provider.COHERE ? str : str.replace(/_{2,}|\$_{2,}\$/g, "`____`");
-						};
+						const normalizeBlanks = (str: string): string => str;
 						questions.push({ question: normalizeBlanks(question.question), answer: question.answer });
 					} else if (isMatching(question)) {
 						questions.push(question);

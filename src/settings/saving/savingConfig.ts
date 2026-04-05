@@ -18,7 +18,7 @@ export interface SavingConfig {
 }
 
 export const DEFAULT_SAVING_SETTINGS: SavingConfig = {
-	autoSave: false,
+	autoSave: true,
 	savePath: "/",
 	saveFormat: SaveFormat.CALLOUT,
 	quizMaterialProperty: "sources",

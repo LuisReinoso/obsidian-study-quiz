@@ -1,7 +1,8 @@
 /* QuizModal, SelectorModal, NoteViewerModal, FolderViewerModal */
 .modal-qg {
-	width: 40%;
-	height: 80%;
+	width: 90%;
+	max-width: 700px;
+	height: 85%;
 }
 
 /* QuizModal, SelectorModal, NoteViewerModal, FolderViewerModal */
@@ -109,7 +110,8 @@
 
 /* NoteAndFolderSelector */
 .suggest-modal-content-qg {
-	width: 40%;
+	width: 90%;
+	max-width: 700px;
 	max-height: 80%;
 	top: 10%;
 }
@@ -324,4 +326,69 @@ FillInTheBlankQuestion, MatchingQuestion, ShortOrLongAnswerQuestion */
 .first-item-qg {
 	padding-top: 0.75em !important;
 	border-top: 1px solid var(--background-modifier-border) !important;
+}
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media (max-width: 700px) {
+	.modal-qg {
+		width: 100% !important;
+		max-width: 100% !important;
+		height: 95% !important;
+	}
+
+	.suggest-modal-content-qg {
+		width: 100% !important;
+		max-width: 100% !important;
+	}
+
+	/* Stack answer buttons vertically on mobile */
+	.true-false-container-qg,
+	.multiple-choice-container-qg,
+	.select-all-that-apply-container-qg {
+		grid-template-columns: 1fr;
+	}
+
+	.matching-container-qg {
+		grid-template-columns: 1fr 1fr;
+		gap: 0.8em;
+	}
+
+	/* Larger touch targets */
+	.true-false-button-qg,
+	.multiple-choice-button-qg,
+	.select-all-that-apply-button-qg,
+	.matching-button-qg {
+		min-height: 48px;
+		padding: 0.8em;
+		font-size: 1.05em;
+	}
+
+	.submit-answer-qg {
+		min-height: 48px;
+		font-size: 1.05em;
+	}
+
+	.modal-button-qg {
+		min-height: 44px;
+		padding: 0.6em 1.2em;
+		font-size: 1em;
+	}
+
+	.modal-button-container-qg {
+		flex-wrap: wrap;
+	}
+
+	.text-area-input-qg {
+		min-height: 48px;
+		font-size: 1.05em;
+	}
+
+	.question-qg {
+		font-size: 1.1em;
+		line-height: 1.5;
+	}
+
+	.item-qg {
+		flex-wrap: wrap;
+	}
 }
