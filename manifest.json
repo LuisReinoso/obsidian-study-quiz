@@ -1,9 +1,9 @@
 {
-	"id": "quiz-generator",
-	"name": "Quiz Generator",
+	"id": "obsidian-study-quiz",
+	"name": "Study Quiz",
 	"version": "2.1.2",
 	"minAppVersion": "0.15.0",
-	"description": "Generate interactive flashcards from your notes using models from OpenAI (ChatGPT), Google (Gemini), Ollama (local LLMs), and more. Or manually create your own to use with the quiz UI.",
+	"description": "Quiz generator for Obsidian — fork of quiz-generator by Edward Cui, part of the Study Obsidian toolkit. Upstream: https://github.com/ECuiDev/obsidian-quiz-generator",
 	"author": "Edward Cui",
 	"authorUrl": "https://github.com/ECuiDev",
 	"isDesktopOnly": false
