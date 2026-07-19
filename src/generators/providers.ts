@@ -1,7 +1,7 @@
 export enum Provider {
-	CLAUDE_SERVER = "CLAUDE_SERVER",
+	STUDY_SERVER = "STUDY_SERVER",
 }
 
 export const providers: Record<Provider, string> = {
-	[Provider.CLAUDE_SERVER]: "Claude Server",
+	[Provider.STUDY_SERVER]: "Study Server",
 };

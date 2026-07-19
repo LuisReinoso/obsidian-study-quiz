@@ -6,12 +6,12 @@
 > |---|---|
 > | [**obsidian-speed-reading**](https://github.com/LuisReinoso/obsidian-speed-reading) | RSVP reader with retrieval practice, streaks, and session tracking |
 > | [**obsidian-study-spaced-repetition**](https://github.com/LuisReinoso/obsidian-study-spaced-repetition) | Spaced repetition flashcard review using `question::answer` notes (fork of `st3v3nmw/obsidian-spaced-repetition`) |
-> | **obsidian-study-quiz** *(this repo)* | In-note quiz UI powered by a self-hosted Claude backend (fork of `ECuiDev/obsidian-quiz-generator`) |
-> | [**claude-study-server**](https://github.com/LuisReinoso/claude-study-server) | Backend that generates the summaries, flashcards, and quiz questions consumed by the three plugins |
+> | **obsidian-study-quiz** *(this repo)* | In-note quiz UI powered by a self-hosted study-server backend (fork of `ECuiDev/obsidian-quiz-generator`) |
+> | [**study-server**](https://github.com/LuisReinoso/study-server) | Backend that generates the summaries, flashcards, and quiz questions consumed by the three plugins |
 >
-> This fork strips out all third-party providers (OpenAI, Google, Ollama, Cohere, Mistral, Perplexity, direct Anthropic) and routes every generation request through a single `claude-study-server` instance. All credit for the original plugin and quiz UI goes to [@ECuiDev](https://github.com/ECuiDev). The fork has a unique plugin ID so it can coexist with the community-plugin version without auto-update conflicts.
+> This fork strips out all third-party providers (OpenAI, Google, Ollama, Cohere, Mistral, Perplexity, direct Anthropic) and routes every generation request through a single `study-server` instance. All credit for the original plugin and quiz UI goes to [@ECuiDev](https://github.com/ECuiDev). The fork has a unique plugin ID so it can coexist with the community-plugin version without auto-update conflicts.
 
-**Quiz Generator** is a plugin for [Obsidian](https://obsidian.md/) that generates interactive, exam-style questions from your notes using a self-hosted Claude backend. Whether you're a student preparing for exams or an educator designing assessments, this plugin streamlines the question creation process.
+**Quiz Generator** is a plugin for [Obsidian](https://obsidian.md/) that generates interactive, exam-style questions from your notes using a self-hosted study-server backend. Whether you're a student preparing for exams or an educator designing assessments, this plugin streamlines the question creation process.
 
 ## Demo
 
@@ -30,41 +30,17 @@ https://github.com/user-attachments/assets/22770da4-af69-412c-ae05-1aae0fff4a10
 - **Multi-Language Support:** Generate questions in 22 different languages.
 - **Math Support:** Generate questions from notes containing LaTeX.
 
-## Supported Providers
-
-- [OpenAI](https://openai.com/): Advanced models for high-quality question generation.
-- [Google](https://ai.google.dev/): Free to use with the largest context window for handling extensive notes.
-- [Anthropic](https://www.anthropic.com/): Optimized for thoughtful and contextually aware outputs.
-- [Perplexity](https://www.perplexity.ai/): Fine-tuned LLaMA models for robust question generation.
-- [Mistral](https://mistral.ai/): Lightweight models for fast and efficient processing.
-- [Cohere](https://cohere.com/): Free to use with strengths in generating coherent questions.
-- [Ollama](https://ollama.com/): Local LLMs for enhanced privacy and offline processing.
-
 ## Usage
 
 ### Installation
 
-This plugin is now available in the **Community plugins** page in Obsidian. You can install it using either of the following methods.
+This fork is not published on the **Community plugins** page. It uses a unique plugin ID (`obsidian-study-quiz`) so it can sit alongside the original community plugin without conflicting, but that means it has to be installed manually and built from source.
 
-#### Obsidian Installation
-
-1. Install the plugin from the **Community plugins** page in Obsidian.
-   - **Settings** → **Community plugins** → **Browse**.
-   - Search for `Quiz Generator`.
-   - Select the plugin to open its page and then select **Install**.
-   - Select **Enable** on the plugin page or go back to the **Community plugins** page and toggle the switch.
-2. Open the plugin settings and enter your API key for the selected provider.
-   - If you don't have an API key, create an account at the relevant provider's site and retrieve your API key.
-3. Configure the other settings as desired.
-
-#### Manual Installation
-
-1. Download `main.js`, `manifest.json`, and `styles.css` from the [latest release](https://github.com/ECuiDev/obsidian-quiz-generator/releases).
-2. Go to your Obsidian vault's `plugins` folder and create a new folder named `quiz-generator`.
-3. Move the files you downloaded in step 1 to this folder.
-4. Enable the plugin in the **Community plugins** page in Obsidian.
-5. Open the plugin settings and enter your API key for the selected provider.
-   - If you don't have an API key, create an account at the relevant provider's site and retrieve your API key.
+1. Run `corepack pnpm install` then `corepack pnpm run build` in this repository. This produces `main.js` next to the existing `manifest.json` and `styles.css`.
+2. Go to your Obsidian vault's `plugins` folder and create a new folder named `study-quiz`.
+3. Move `main.js`, `manifest.json`, and `styles.css` into this folder.
+4. Go to **Settings** → **Community plugins** → **Installed plugins** and enable "Study Quiz".
+5. Open the plugin settings and set the **Server URL** to your running `study-server` instance (e.g. `http://100.x.x.x:3457` over Tailscale). If your server requires auth, set the **Auth token** too.
 6. Configure the other settings as desired.
 
 ### Generation

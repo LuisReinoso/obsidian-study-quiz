@@ -1,11 +1,11 @@
 import Generator from "./generator";
 import { Provider } from "./providers";
 import { QuizSettings } from "../settings/config";
-import ClaudeServerGenerator from "./claudeServer/claudeServerGenerator";
+import StudyServerGenerator from "./studyServer/studyServerGenerator";
 
 export default class GeneratorFactory {
 	private static generatorMap: { [key in Provider]: new (settings: QuizSettings) => Generator } = {
-		[Provider.CLAUDE_SERVER]: ClaudeServerGenerator,
+		[Provider.STUDY_SERVER]: StudyServerGenerator,
 	};
 
 	public static createInstance(settings: QuizSettings): Generator {

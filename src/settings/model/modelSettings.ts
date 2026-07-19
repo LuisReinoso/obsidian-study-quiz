@@ -1,7 +1,7 @@
 import { Setting } from "obsidian";
 import QuizGenerator from "../../main";
 import { providers } from "../../generators/providers";
-import displayClaudeServerSettings from "./claudeServer/claudeServerSettings";
+import displayStudyServerSettings from "./studyServer/studyServerSettings";
 
 const displayModelSettings = (containerEl: HTMLElement, plugin: QuizGenerator, refreshSettings: () => void): void => {
 	new Setting(containerEl).setName("Model").setHeading();
@@ -20,7 +20,7 @@ const displayModelSettings = (containerEl: HTMLElement, plugin: QuizGenerator, r
 				})
 		);
 
-	displayClaudeServerSettings(containerEl, plugin, refreshSettings);
+	displayStudyServerSettings(containerEl, plugin, refreshSettings);
 };
 
 export default displayModelSettings;

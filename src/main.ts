@@ -48,7 +48,43 @@ export default class QuizGenerator extends Plugin {
 	}
 
 	async loadSettings(): Promise<void> {
-		this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
+		const data = await this.loadData();
+		this.settings = Object.assign({}, DEFAULT_SETTINGS, data);
+
+		if (this.migrateStudyServerSettings(data)) {
+			await this.saveSettings();
+		}
+	}
+
+	/**
+	 * One-time migration from the pre-rename settings schema (old server
+	 * provider/keys) to the current schema, run on load so existing users
+	 * don't lose their configured server URL/token.
+	 */
+	private migrateStudyServerSettings(data: Record<string, unknown> | null | undefined): boolean {
+		if (!data) return false;
+
+		let migrated = false;
+		const legacyKeyMap: [string, keyof QuizSettings][] = [
+			["claudeServerUrl", "studyServerUrl"],
+			["claudeServerToken", "studyServerToken"],
+		];
+
+		for (const [oldKey, newKey] of legacyKeyMap) {
+			const oldValue = data[oldKey];
+			if (oldValue !== undefined && !data[newKey as string]) {
+				(this.settings as unknown as Record<string, unknown>)[newKey] = oldValue;
+				migrated = true;
+			}
+		}
+
+		const legacyProviderValue = "CLAUDE_SERVER";
+		if (data.provider === legacyProviderValue) {
+			this.settings.provider = "STUDY_SERVER";
+			migrated = true;
+		}
+
+		return migrated;
 	}
 
 	async saveSettings(): Promise<void> {

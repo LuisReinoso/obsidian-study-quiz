@@ -1,11 +1,11 @@
 import { Provider } from "../../generators/providers";
-import { ClaudeServerConfig, DEFAULT_CLAUDE_SERVER_SETTINGS } from "./claudeServer/claudeServerConfig";
+import { StudyServerConfig, DEFAULT_STUDY_SERVER_SETTINGS } from "./studyServer/studyServerConfig";
 
-export interface ModelConfig extends ClaudeServerConfig {
+export interface ModelConfig extends StudyServerConfig {
 	provider: string;
 }
 
 export const DEFAULT_MODEL_SETTINGS: ModelConfig = {
-	provider: Provider.CLAUDE_SERVER,
-	...DEFAULT_CLAUDE_SERVER_SETTINGS,
+	provider: Provider.STUDY_SERVER,
+	...DEFAULT_STUDY_SERVER_SETTINGS,
 };
